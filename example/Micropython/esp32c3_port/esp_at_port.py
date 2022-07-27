@@ -3,7 +3,7 @@ import time
 
 class esp_uart:
     def __init__(self,bus_num):
-        self.uart = UART(bus_num, baudrate=115200, tx=Pin(8), rx=Pin(9), cts=Pin(10), rts=Pin(11))
+        self.uart = UART(bus_num, baudrate=115200, tx=Pin(8), rx=Pin(9), cts=Pin(10), rts=Pin(11),txbuf=1024,rxbuf=1024)
         self.uart.write('ATE0\r\n') #turn off echo
         
     def sendAT(self,cmd):
