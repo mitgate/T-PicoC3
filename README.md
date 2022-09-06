@@ -19,7 +19,7 @@
 ### Arduino
 
 >1. Open up the Arduino IDE and go to File->Preferences.
->2. In the dialog that pops up, enter the following URL in the "Additional Boards Manager URLs" field:
+>2. [Unofficial libraries](https://github.com/earlephilhower/arduino-pico) are used in the Arduino examples.In the dialog that pops up, enter the following URL in the "Additional Boards Manager URLs" field:
 ```
 https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
 ```
