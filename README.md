@@ -63,7 +63,7 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_dev_index.json
 ```
 > 3. Go to Tools->Boards->Board Manager in the IDE
-> 4. Type "EPS32C3 Dev" in the search box and select "Add":
+> 4. Type "ESP32C3 Dev" in the search box and select "Add":
 > 5. Click any "file-> example-> all esp32 esamle" and upload the run
 
 #### ESP32-C3 Upload method
