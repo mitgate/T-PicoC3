@@ -49,6 +49,39 @@ tim.init(freq=2.5, mode=Timer.PERIODIC, callback=tick)
 
 >6. For more usage methods, please refer to the Micro python [documentation](http://docs.micropython.org/).
 
+### Platform IO
+>Option 1: earlephilhower arduino-pico core. Great if you're using Arduino IDE but not fully supported (yet) on PlatformIO. There are some additional instructions to get it to work in the meantime: https://github.com/earlephilhower/arduino-pico/blob/master/docs/platformio.rst
+There are plans to merge it into the main PlatformIO eventually: platformio/platform-raspberrypi#36
+
+>Option 2: using the standard Arduino-mbed core that's built in to PIO. The packages and toolchain are all installed by the PIO GUI when you create a new project. Use these options in setup:
+
+![image](https://user-images.githubusercontent.com/24273979/204114810-5935b9a0-ce68-4bf8-b8d3-7139c1f3d3c0.png)
+
+Here is my platformio.ini file that got generated from PIO GUI:
+
+[env:pico]
+platform = raspberrypi
+board = pico
+framework = arduino
+lib_deps = 
+	khoih-prog/ESP_AT_Lib@^1.4.1
+To connect to the ESPC3 via UART for Wifi I am using this excellent library (installed by PIO GUI): https://github.com/khoih-prog/ESP_AT_Lib
+Note that there is a workaround required to access Serial2 and TX-8, RX-9 on the T-Pico device. It's explained here: khoih-prog/ESP_AT_Lib#4
+
+Here is the first few rows of the build terminal output showing the configuration and packages:
+
+CONFIGURATION: https://docs.platformio.org/page/boards/raspberrypi/pico.html
+PLATFORM: Raspberry Pi RP2040 (1.7.0) > Raspberry Pi Pico
+HARDWARE: RP2040 133MHz, 264KB RAM, 2MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, jlink, raspberrypi-swd)
+PACKAGES:
+ - framework-arduino-mbed @ 3.1.1
+ - tool-openocd-raspberrypi @ 2.1100.0 (11.0)
+ - tool-rp2040tools @ 1.0.2
+ - toolchain-gccarmnoneeabi @ 1.90201.191206 (9.2.1)
+
+Thanks @jimemo
+
 ---
 ## ESP32-C3
 ### Arduino 
