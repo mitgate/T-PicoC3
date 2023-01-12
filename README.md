@@ -50,23 +50,34 @@ tim.init(freq=2.5, mode=Timer.PERIODIC, callback=tick)
 >6. For more usage methods, please refer to the Micro python [documentation](http://docs.micropython.org/).
 
 ### Platform IO
->Option 1: earlephilhower arduino-pico core. Great if you're using Arduino IDE but not fully supported (yet) on PlatformIO. There are some additional instructions to get it to work in the meantime: https://github.com/earlephilhower/arduino-pico/blob/master/docs/platformio.rst
-There are plans to merge it into the main PlatformIO eventually: platformio/platform-raspberrypi#36
 
->Option 2: using the standard Arduino-mbed core that's built in to PIO. The packages and toolchain are all installed by the PIO GUI when you create a new project. Use these options in setup:
+>Option 1: using the standard Arduino-mbed core that's built in to PIO. The packages and toolchain are all installed by the PIO GUI when you create a new project. Use these options in setup:
 
 ![image](https://user-images.githubusercontent.com/24273979/204114810-5935b9a0-ce68-4bf8-b8d3-7139c1f3d3c0.png)
 
-Here is my platformio.ini file that got generated from PIO GUI:
 
+
+
+>Option 2: This makes use of the same 'earlephilhower arduino-pico core' that is available in Arduino IDE, however this core is not fully supported (yet) on PlatformIO and is waiting for this pull request: https://github.com/platformio/platform-raspberrypi/pull/36
+
+>In the meantime here are the steps to create your project: 
+https://github.com/earlephilhower/arduino-pico/blob/master/docs/platformio.rst
+
+Here is my platformio.ini file:
+```
 [env:pico]
-platform = raspberrypi
+platform = https://github.com/maxgerhardt/platform-raspberrypi.git
 board = pico
+board_build.core = earlephilhower
 framework = arduino
+build_flags = 
+	-I ../include
 lib_deps = 
 	khoih-prog/ESP_AT_Lib@^1.4.1
-To connect to the ESPC3 via UART for Wifi I am using this excellent library (installed by PIO GUI): https://github.com/khoih-prog/ESP_AT_Lib
-Note that there is a workaround required to access Serial2 and TX-8, RX-9 on the T-Pico device. It's explained here: khoih-prog/ESP_AT_Lib#4
+```
+To connect to the T-PicoC3 via UART for Wifi I am using this excellent library (installed by PIO GUI): https://github.com/khoih-prog/ESP_AT_Lib
+Note that there is a workaround required to access `Serial2` and `TX-8, RX-9` on the T-Pico device. It's explained here: https://github.com/khoih-prog/ESP_AT_Lib/discussions/4
+
 
 Here is the first few rows of the build terminal output showing the configuration and packages:
 
@@ -80,7 +91,7 @@ PACKAGES:
  - tool-rp2040tools @ 1.0.2
  - toolchain-gccarmnoneeabi @ 1.90201.191206 (9.2.1)
 
-Thanks @jimemo
+Thanks [@jimemo](https://github.com/jimemo)
 
 ---
 ## ESP32-C3
