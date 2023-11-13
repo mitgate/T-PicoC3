@@ -7,7 +7,7 @@ class esp_uart:
         self.uart.write('ATE0\r\n') #turn off echo
         
     def sendAT(self,cmd):
-        self.uart.write('AT+'+cmd+'\r\n')
+        self.uart.write(f'AT+{cmd}' + '\r\n')
         while self.uart.any()==0:
             time.sleep_ms(1)
         time.sleep_ms(50) #Prevent data loss caused by excessive data
